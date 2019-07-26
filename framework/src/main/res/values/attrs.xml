@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RippleText">
+        <attr name="rippleEnabled" format="boolean" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="rippleColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ViewAttr">
+        <attr name="fontPath" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="EditText">
+        <attr name="inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="email" value="1" />
+            <enum name="password" value="2" />
+            <enum name="phone" value="3" />
+            <enum name="numberDecimal" value="4" />
+            <enum name="multiLine" value="5" />
+            <enum name="numberFloat" value="6" />
+            <enum name="website" value="7" />
+            <enum name="personName" value="8" />
+        </attr>
+    </declare-styleable>
+
+</resources>

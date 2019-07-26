@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">kriptonframework</string>
+    <string name="noInternet">عدم دسترسی به اینترنت</string>
+    <string name="checkYourIntenrt">اینترنت خود را بررسی کنید</string>
+    <string name="tryAgain">تلاش مجدد</string>
+    <string name="ok">باشه</string>
+
+    <string name="errorInServerConnect">خطا در اتصال به سرور</string>
+    <string name="pleaseTryAgain">مشکلی رخ داده است لطفا مجددا تلاش کنید</string>
+    <string name="noItem">آیتمی وجود ندارد</string>
+    <string name="noItem_description"></string>
+    <string name="noInternetPremision">عدم دسترسی به اینترنت!</string>
+    <string name="errorCode">خطا! کد خطا:</string>
+    <string name="errorInServerConnection">خطا در اتصال به سرور! در ارسال اطلاعات خطایی رخ داده است</string>
+
+</resources>

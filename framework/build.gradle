@@ -1,0 +1,69 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // KOTLIN
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // SHARED PREFERENCES
+    implementation "in.co.ophio:secure-preferences:$sharedPreferences_version"
+
+    // ‌MATERIAL
+    implementation "com.google.android.material:material:$material_version"
+
+    // GLIDE
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    // ERROR VIEW
+    implementation "com.github.vlonjatg:progress-activity:$errorView_version"
+
+    // DIALOG
+    implementation "com.afollestad.material-dialogs:core:$material_dialog_version"
+
+    // TOOLBOX
+    implementation "com.github.duanhong169:drawabletoolbox:$toolbox_version"
+
+    // GSON
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    // JSON PARSING
+    implementation "com.squareup.retrofit2:converter-gson:$gsonConverter_version"
+
+    // RX
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJavaAdapter_version"
+
+    // OKHTTP LOG
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLog_version"
+
+}
