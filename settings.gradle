@@ -1,2 +1,1 @@
 include ':app', ':framework'
-project(':framework').projectDir = new File(settingsDir, '../KriptonFramework/framework')
