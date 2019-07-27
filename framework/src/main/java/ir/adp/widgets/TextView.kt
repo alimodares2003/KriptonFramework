@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import ir.adp.framework.R
 
 /**
  * Created by Ali on 6/3/2019.
  */
 
-class TextView : TextView {
+class TextView : AppCompatTextView {
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         initView(attrs)
     }
