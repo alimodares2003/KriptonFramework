@@ -1,4 +1,4 @@
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 apply plugin: 'com.android.library'
 
@@ -6,22 +6,22 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-def library_groupId = 'com.samco'
-def library_artifactId = 'framework'
-def library_versionCode = 1
-def library_versionName = '1.0.0'
-
-publish {
-
-    userOrg = 'alimodares'
-    repoName = 'KriptonFramework'
-    groupId = library_groupId
-    artifactId = library_artifactId
-    publishVersion = library_versionName
-    desc = 'framework'
-    website = 'https://github.com/alimodares2003/KriptonFramework.git'
-
-}
+//def library_groupId = 'com.samco'
+//def library_artifactId = 'framework'
+//def library_versionCode = 1
+//def library_versionName = '1.0.0'
+//
+//publish {
+//
+//    userOrg = 'alimodares'
+//    repoName = 'KriptonFramework'
+//    groupId = library_groupId
+//    artifactId = library_artifactId
+//    publishVersion = library_versionName
+//    desc = 'framework'
+//    website = 'https://github.com/alimodares2003/KriptonFramework.git'
+//
+//}
 
 
 android {
