@@ -1,4 +1,4 @@
-package ir.adp.club.utils.model
+package ir.adp.framework.utils.model
 
 import com.google.gson.annotations.SerializedName
 
