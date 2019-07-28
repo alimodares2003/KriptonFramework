@@ -20,8 +20,16 @@ fun Fragment.goActivity(activity: Class<*>) {
     startActivity(intent)
 }
 
+fun Fragment.goActivity(intent: Intent) {
+    startActivity(intent)
+}
+
 fun Activity.goActivity(activity: Class<*>) {
     val intent = Intent(this, activity)
+    startActivity(intent)
+}
+
+fun Activity.goActivity(intent: Intent) {
     startActivity(intent)
 }
 
