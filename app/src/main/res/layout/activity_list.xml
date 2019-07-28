@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ir.adp.widgets.Toolbar style="@style/Toolbar"/>
+
+    <ir.adp.widgets.ErrorView
+            android:id="@+id/ev"
+            style="@style/ErrorView">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/srl"
+                style="@style/SwipeRefreshLayout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    style="@style/RecyclerView"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </ir.adp.widgets.ErrorView>
+
+</LinearLayout>

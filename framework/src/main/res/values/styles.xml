@@ -87,47 +87,4 @@
         <item name="contentPadding">8dp</item>
     </style>
 
-    <style name="LinearLayout_Item_Main">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="ImageView_Item_Main">
-        <item name="android:layout_width">16dp</item>
-        <item name="android:layout_height">16dp</item>
-    </style>
-
-    <style name="TextView_Item_Main">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
-        <item name="android:textColor">@color/textSecondary_default</item>
-    </style>
-
-    <style name="LinearLayout_item_booking">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:orientation">horizontal</item>
-    </style>
-
-    <style name="ImageView_item_booking">
-        <item name="android:layout_width">16dp</item>
-        <item name="android:layout_height">16dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-    </style>
-
-    <style name="TextView_item_booking">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Caption</item>
-        <item name="android:textColor">@color/textPrimary_default</item>
-        <item name="fontPath">@string/font_mainRegular_faNum</item>
-    </style>
-
 </resources>
