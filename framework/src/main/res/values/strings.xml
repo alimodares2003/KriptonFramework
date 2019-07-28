@@ -12,5 +12,6 @@
     <string name="noInternetPremision">عدم دسترسی به اینترنت!</string>
     <string name="errorCode">خطا! کد خطا:</string>
     <string name="errorInServerConnection">خطا در اتصال به سرور! در ارسال اطلاعات خطایی رخ داده است</string>
+    <string name="toman">تومان</string>
 
 </resources>

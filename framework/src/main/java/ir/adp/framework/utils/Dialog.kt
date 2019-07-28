@@ -2,8 +2,6 @@ package ir.adp.framework.utils
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
-import android.widget.FrameLayout
 import android.widget.ProgressBar
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -15,7 +13,6 @@ import java.util.*
 object Dialog
 
 fun showLoading(context: Context, text: String): MaterialDialog {
-    val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT)
     var width = 0
     var height = 0
     val loading = MaterialDialog(context).show {
@@ -29,10 +26,7 @@ fun showLoading(context: Context, text: String): MaterialDialog {
         tv.setTextColor(Color.BLACK)
 
     }.cornerRadius(8f)
-//    loading.view.contentLayout.customView?.layoutParams = params
     loading.window.setLayout(550, 200)
-//    Log.d("seufh",width.toString() + height.toString())
-//    loading.window.setLayout(width, height)
     return loading
 }
 
