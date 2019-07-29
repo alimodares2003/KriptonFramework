@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat
 import ir.adp.framework.R
 import ir.adp.framework.data.api.ApiClient
 import ir.adp.framework.data.manager.DataManager
+import ir.adp.framework.utils.DisplayHelper
 import ir.adp.framework.utils.changeColorDrawableRes
 import ir.adp.framework.utils.showAnimation
 import ir.adp.widgets.Toolbar
@@ -23,7 +24,7 @@ open class BaseActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         dataManager = DataManager(application)
-
+        DisplayHelper.changeAppDirection(this, dataManager.get("direction", ""))
         val icon = changeColorDrawableRes(this, resBackIcon, ContextCompat.getColor(this, R.color.toolbar_color))
 
         if (isShowBack) {
