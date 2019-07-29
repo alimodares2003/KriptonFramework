@@ -24,7 +24,7 @@ open class BaseActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         dataManager = DataManager(application)
-        DisplayHelper.changeAppDirection(this, dataManager.get("direction", ""))
+        DisplayHelper.changeAppDirection(this, getDirection())
         val icon = changeColorDrawableRes(this, resBackIcon, ContextCompat.getColor(this, R.color.toolbar_color))
 
         if (isShowBack) {
@@ -58,5 +58,9 @@ open class BaseActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         showAnimation()
+    }
+
+    open fun getDirection(): String {
+        return "ltr"
     }
 }
