@@ -6,7 +6,7 @@ import androidx.multidex.MultiDexApplication
 import ir.adp.framework.data.manager.DataManager
 
 
-class ApplicationModule : MultiDexApplication() {
+open class ApplicationModule : MultiDexApplication() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -19,7 +19,7 @@ class ApplicationModule : MultiDexApplication() {
         dataManager.put("direction", getDirection())
     }
 
-    fun getDirection(): String {
+    open fun getDirection(): String {
         return "ltr"
     }
 }
