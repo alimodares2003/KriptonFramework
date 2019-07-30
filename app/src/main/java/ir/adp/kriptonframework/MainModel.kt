@@ -9,8 +9,16 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 class MainResponse(
-    @SerializedName("name") val name: String
-) : SimpleResponse()
+    @SerializedName("name") val name: String,
+    @SerializedName("type") val type: Int
+) : SimpleResponse() {
+
+    companion object {
+        const val TYPE_USER = 1
+        const val TYPE_FRIEND = 2
+    }
+
+}
 
 class MainRequest(
     @SerializedName("name") val name: String
