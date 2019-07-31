@@ -12,8 +12,8 @@ import ir.adp.framework.R
 
 class ImageView : AppCompatImageView {
 
-    var first = 0f
-    var second = 0f
+    var first = ""
+    var second = ""
     var isRatio = false
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
@@ -32,15 +32,15 @@ class ImageView : AppCompatImageView {
         val ratio = typedArray.getString(R.styleable.ImageView_aspectRatio)
         isRatio = typedArray.getBoolean(R.styleable.ImageView_aspectRatioEnabled, false)
         if (!ratio.isNullOrEmpty()) {
-            second = ratio.substring(ratio.lastIndexOf(":") + 1).toFloat()
-            first = ratio.replace(":$width", "").toFloat()
+            second = ratio.substring(ratio.lastIndexOf(":") + 1)
+            first = ratio.replace(":$second", "")
         }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         if (isRatio) {
             val widthSize = MeasureSpec.getSize(widthMeasureSpec)
-            val heightSize = (second / first * widthSize).toInt()
+            val heightSize = (second.toFloat() / first.toFloat() * widthSize).toInt()
             val newHeightSpec = MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY)
             super.onMeasure(widthMeasureSpec, newHeightSpec)
         } else
