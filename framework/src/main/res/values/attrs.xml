@@ -24,4 +24,9 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="ImageView">
+        <attr name="aspectRatio" format="string"/>
+        <attr name="aspectRatioEnabled" format="boolean"/>
+    </declare-styleable>
+
 </resources>

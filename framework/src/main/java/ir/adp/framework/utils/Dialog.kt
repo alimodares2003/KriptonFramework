@@ -8,7 +8,6 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import ir.adp.framework.R
 import ir.adp.widgets.TextView
-import java.util.*
 
 object Dialog
 
@@ -41,9 +40,6 @@ fun showAlert(
     isCancellable: Boolean? = null
 ): MaterialDialog {
     val alert = MaterialDialog(context).show {
-        val configuration = context.resources.configuration
-        configuration.setLayoutDirection(Locale("fa"))
-        context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
         title(text = title)
         message(text = body)
         positiveButton(text = positiveText) {

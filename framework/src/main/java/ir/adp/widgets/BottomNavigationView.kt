@@ -2,9 +2,13 @@ package ir.adp.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Typeface
+import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import android.view.Menu
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import ir.adp.framework.R
+import ir.adp.framework.utils.CustomTypefaceSpan
 
 class BottomNavigationView : BottomNavigationView {
 
@@ -19,6 +23,7 @@ class BottomNavigationView : BottomNavigationView {
     @SuppressLint("ResourceType")
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        changeBottomNavigationFont()
         selectedItemId = 1
     }
 
@@ -26,5 +31,15 @@ class BottomNavigationView : BottomNavigationView {
         menu.add(Menu.NONE, itemId++, Menu.NONE, title).setIcon(resIcon)
     }
 
+    private fun changeBottomNavigationFont() {
+        val font = Typeface.createFromAsset(context.assets, context.getString(R.string.font_mainRegular))
+        val typefaceSpan = CustomTypefaceSpan("", font)
+        for (i in 0 until menu.size()) {
+            val menuItem = menu.getItem(i)
+            val spannableTitle = SpannableStringBuilder(menuItem.title)
+            spannableTitle.setSpan(typefaceSpan, 0, spannableTitle.length, 0)
+            menuItem.title = spannableTitle
+        }
+    }
 
 }

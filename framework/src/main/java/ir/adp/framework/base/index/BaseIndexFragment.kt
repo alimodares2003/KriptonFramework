@@ -13,9 +13,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ir.adp.framework.R
 import ir.adp.framework.base.BaseFragment
-import ir.adp.framework.utils.*
+import ir.adp.framework.utils.ErrorType
+import ir.adp.framework.utils.avoidException
+import ir.adp.framework.utils.isNetworkAvailable
 import ir.adp.framework.utils.listener.IIndexApiListener
 import ir.adp.framework.utils.model.ErrorViewModel
+import ir.adp.framework.utils.showEmpty
 import ir.adp.widgets.ErrorView
 import retrofit2.Response
 
@@ -75,20 +78,28 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
             srl_index?.isRefreshing = false
             if (isNetworkAvailable(context)) {
                 service.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ response ->
-                            if (response.isSuccessful) {
-                                listener.onSuccessApi(response, listener)
-                            } else {
-                                toastL(response.code().toString() + context.getString(R.string.errorCode))
-                            }
-                        }, {
-                            //                            toastL(it.localizedMessage)
-                            listener.onFailureApi(context, errorView_index!!) {
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ response ->
+                        if (response.isSuccessful) {
+                            listener.onSuccessApi(response, listener)
+                        } else {
+                            errorView_index?.showError(
+                                R.drawable.ic_warning,
+                                getString(R.string.error),
+                                response.code().toString() + context.getString(R.string.errorCode),
+                                getString(R.string.tryAgain)
+                            ) {
                                 errorView_index?.showLoading()
                                 runApi(context, services!!, this)
                             }
-                        })
+                        }
+                    }, {
+                        //                            toastL(it.localizedMessage)
+                        listener.onFailureApi(context, errorView_index!!) {
+                            errorView_index?.showLoading()
+                            runApi(context, services!!, this)
+                        }
+                    })
 
             } else {
                 listener.onErrorInternet(context, errorView_index!!) {
