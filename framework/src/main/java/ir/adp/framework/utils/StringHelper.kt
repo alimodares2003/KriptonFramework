@@ -7,7 +7,6 @@ import android.text.SpannableString
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ir.adp.framework.R
-import java.text.DecimalFormat
 
 object StringHelper {
     fun setFontToText(context: Context, text: String): String {
@@ -24,12 +23,4 @@ inline fun <reified T> String?.parseToClassGSON(): T? {
 
 fun Any?.parseClassToStringGSON(): String? {
     return Gson().toJson(this)
-}
-
-fun Double.formatCurrency(context: Context): String {
-    return DecimalFormat("#,###").format(toDouble()) + " " + context.getString(R.string.toman)
-}
-
-fun Int.formatCurrency(context: Context): String {
-    return DecimalFormat("#,###").format(toInt()) + " " + context.getString(R.string.toman)
 }

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-        <ir.adp.widgets.Toolbar style="@style/Toolbar" />
+    <ir.adp.widgets.Toolbar style="@style/Toolbar"/>
 
-        <ir.adp.widgets.ErrorView
-                android:id="@+id/ev"
-                style="@style/ErrorView">
+    <ir.adp.widgets.ErrorView
+            android:id="@+id/ev"
+            style="@style/ErrorView">
 
-                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                        android:id="@+id/srl"
-                        style="@style/SwipeRefreshLayout">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/srl"
+                style="@style/SwipeRefreshLayout">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rv"
-                                style="@style/RecyclerView" />
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    style="@style/RecyclerView"/>
 
-                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        </ir.adp.widgets.ErrorView>
+    </ir.adp.widgets.ErrorView>
 
-        <ir.adp.widgets.Button
-                android:id="@+id/submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="ارسال"
-                style="@style/Button" />
+    <ir.adp.widgets.Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="ارسال"
+            style="@style/Button"/>
 
 </LinearLayout>
