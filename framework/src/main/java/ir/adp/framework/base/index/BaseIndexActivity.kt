@@ -41,7 +41,7 @@ open class BaseIndexActivity<T> : BaseActivity(),
 
         list = ArrayList()
 
-        srl_index?.setColorSchemeResources(R.color.colorPrimary)
+        srl_index?.setColorSchemeResources(R.color.onPrimaryColor)
         srl_index?.setOnRefreshListener {
             runApi(this, services!!, this)
         }
