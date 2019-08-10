@@ -16,8 +16,7 @@ open class ApplicationModule : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        val dataManager = DataManager(this)
-        dataManager.put("direction", getDirection())
+        DataManager(this).put("direction", getDirection())
         ApiClient.BASE_URL = getBaseUrl()
     }
 

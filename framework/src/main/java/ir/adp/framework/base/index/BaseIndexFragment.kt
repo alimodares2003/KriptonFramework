@@ -40,7 +40,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
         list = ArrayList()
 
-        srl_index?.setColorSchemeResources(R.color.colorPrimary)
+        srl_index?.setColorSchemeResources(R.color.onPrimaryColor)
         srl_index?.setOnRefreshListener {
             runApi(context!!, services!!, this)
         }
