@@ -30,6 +30,7 @@ open class BaseFormFragment : BaseFragment(), IApiListener {
     }
 
     override fun onFailureApi(context: Context) {
+        dialog?.hide()
         toastL(context.getString(R.string.errorInServerConnection))
     }
 

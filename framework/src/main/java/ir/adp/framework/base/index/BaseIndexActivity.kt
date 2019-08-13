@@ -50,7 +50,7 @@ open class BaseIndexActivity<T> : BaseActivity(),
         if (hasToolbarElevationOnScrollListener) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                toolbar.elevation = 0f
+                toolbar?.elevation = 0f
             }
 
             val initialTopPosition = rv_index?.top
@@ -61,11 +61,11 @@ open class BaseIndexActivity<T> : BaseActivity(),
 
                     if (rv_index?.getChildAt(0)?.top!! < initialTopPosition!!) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            toolbar.elevation = 50f
+                            toolbar?.elevation = 50f
                         }
                     } else {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            toolbar.elevation = 0f
+                            toolbar?.elevation = 0f
                         }
                     }
                 }
