@@ -1,6 +1,5 @@
 package ir.adp.framework.base.index
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import ir.adp.framework.R
 import ir.adp.framework.base.BaseFragment
 import ir.adp.framework.utils.ErrorType
-import ir.adp.framework.utils.avoidException
-import ir.adp.framework.utils.isNetworkAvailable
 import ir.adp.framework.utils.listener.IIndexApiListener
 import ir.adp.framework.utils.model.ErrorViewModel
 import ir.adp.framework.utils.showEmpty
+import ir.adp.framework.utils.showErrorApi
+import ir.adp.framework.utils.showErrorInternet
 import ir.adp.widgets.ErrorView
 import retrofit2.Response
 
@@ -29,11 +26,13 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
     var srl_index: SwipeRefreshLayout? = null
     var errorView_index: ErrorView? = null
     var services: Observable<Response<List<T>>>? = null
+    var presenter = BaseIndexPresenter<IIndexApiListener>()
 
     lateinit var list: ArrayList<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(layout, container, false)
+        presenter.onAttach(this)
         srl_index = v.findViewById(R.id.srl)
         rv_index = v.findViewById(R.id.rv)
         errorView_index = v.findViewById(R.id.ev)
@@ -42,7 +41,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
         srl_index?.setColorSchemeResources(R.color.onPrimaryColor)
         srl_index?.setOnRefreshListener {
-            runApi(context!!, services!!, this)
+            presenter.run(context!!, services!!, this)
         }
         return v
     }
@@ -50,9 +49,8 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
     fun callApiIndex(srv: Observable<Response<List<T>>>) {
         services = srv
         errorView_index?.showLoading()
-        runApi(context!!, services!!, this)
+        presenter.run(context!!, services!!, this)
     }
-
 
     @Suppress("UNCHECKED_CAST")
     override fun onSuccessApi(rs: Response<*>, listener: IIndexApiListener) {
@@ -72,41 +70,32 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         return ErrorType.ERROR_EMPTY_DEFAULT
     }
 
-    @SuppressLint("CheckResult")
-    fun runApi(context: Context, service: Observable<Response<List<T>>>, listener: IIndexApiListener) {
-        avoidException {
+    override fun onFailureApi(context: Context, errorText: String) {
+        showErrorApi(context, errorView_index!!) {
+            errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            if (isNetworkAvailable(context)) {
-                service.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ response ->
-                        if (response.isSuccessful) {
-                            listener.onSuccessApi(response, listener)
-                        } else {
-                            errorView_index?.showError(
-                                R.drawable.ic_warning,
-                                getString(R.string.error),
-                                response.code().toString() + context.getString(R.string.errorCode),
-                                getString(R.string.tryAgain)
-                            ) {
-                                errorView_index?.showLoading()
-                                runApi(context, services!!, this)
-                            }
-                        }
-                    }, {
-                        //                            toastL(it.localizedMessage)
-                        listener.onFailureApi(context, errorView_index!!) {
-                            errorView_index?.showLoading()
-                            runApi(context, services!!, this)
-                        }
-                    })
+            presenter.run(context, services!!, this)
+        }
+    }
 
-            } else {
-                listener.onErrorInternet(context, errorView_index!!) {
-                    errorView_index?.showLoading()
-                    runApi(context, services!!, this)
-                }
-            }
+    override fun onFailureServer(context: Context, errorText: String) {
+        errorView_index?.showError(
+            R.drawable.ic_warning,
+            getString(R.string.error),
+            errorText + context.getString(R.string.errorCode),
+            getString(R.string.tryAgain)
+        ) {
+            errorView_index?.showLoading()
+            srl_index?.isRefreshing = false
+            presenter.run(context, services!!, this)
+        }
+    }
+
+    override fun onErrorInternet(context: Context) {
+        showErrorInternet(context, errorView_index!!) {
+            errorView_index?.showLoading()
+            srl_index?.isRefreshing = false
+            presenter.run(context, services!!, this)
         }
     }
 }

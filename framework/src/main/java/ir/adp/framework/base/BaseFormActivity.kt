@@ -1,14 +1,10 @@
 package ir.adp.framework.base
 
-import android.annotation.SuppressLint
 import android.content.Context
 import com.afollestad.materialdialogs.MaterialDialog
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import ir.adp.framework.R
-import ir.adp.framework.utils.avoidException
-import ir.adp.framework.utils.isNetworkAvailable
+import ir.adp.framework.base.index.BaseFormPresenter
 import ir.adp.framework.utils.listener.IApiListener
 import ir.adp.framework.utils.showLoading
 import ir.adp.framework.utils.toastL
@@ -18,6 +14,7 @@ open class BaseFormActivity : BaseActivity(), IApiListener {
 
     var dialog: MaterialDialog? = null
     var dialogText: String = ""
+    val presenter = BaseFormPresenter<IApiListener>()
 
     override fun onSuccessApi(rs: Response<*>, listener: IApiListener) {}
 
@@ -32,29 +29,11 @@ open class BaseFormActivity : BaseActivity(), IApiListener {
     override fun onFailureApi(context: Context) {
         dialog?.hide()
         toastL(context.getString(R.string.errorInServerConnection))
+
     }
 
-    @SuppressLint("CheckResult")
-    fun <T> runApi(context: Context, service: Observable<Response<T>>, listener: IApiListener) {
-        avoidException {
-            if (isNetworkAvailable(context)) {
-                listener.onPreApi()
-                service.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ response ->
-                            if (response.isSuccessful) {
-                                listener.onCompleteApi()
-                                listener.onSuccessApi(response, listener)
-                            } else {
-                                toastL(response.code().toString() + context.getString(R.string.errorCode))
-                            }
-                        }, {
-                            listener.onFailureApi(context)
-                        })
-            } else {
-                context.toastL(context.getString(R.string.noInternetPremision))
-            }
-        }
+    fun <T> callApi(service: Observable<Response<T>>) {
+        presenter.run(this, service, this)
     }
 
 }
