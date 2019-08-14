@@ -62,7 +62,6 @@ class FormView : LinearLayout {
                     }
                     if (noError) {
                         listener()
-//                        resetForm()
                     }
                 }
             }
@@ -130,7 +129,6 @@ class FormView : LinearLayout {
             }
             if (noError) {
                 listener()
-//                resetForm()
             }
             return@setOnMenuItemClickListener true
         }
