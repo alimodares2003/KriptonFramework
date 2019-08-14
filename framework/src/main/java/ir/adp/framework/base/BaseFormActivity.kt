@@ -14,7 +14,7 @@ open class BaseFormActivity : BaseActivity(), IApiListener {
 
     var dialog: MaterialDialog? = null
     var dialogText: String = ""
-    val presenter = BaseFormPresenter<IApiListener>()
+    private val mainPresenter = BaseFormPresenter<IApiListener>()
 
     override fun onSuccessApi(rs: Response<*>, listener: IApiListener) {}
 
@@ -33,7 +33,7 @@ open class BaseFormActivity : BaseActivity(), IApiListener {
     }
 
     fun <T> callApi(service: Observable<Response<T>>) {
-        presenter.run(this, service, this)
+        mainPresenter.run(this, service, this)
     }
 
 }

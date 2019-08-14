@@ -26,13 +26,13 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
     var errorView_index: ErrorView? = null
     var services: Observable<Response<List<T>>>? = null
     var hasToolbarElevationOnScrollListener: Boolean = false
-    var presenter = BaseIndexPresenter<IIndexApiListener>()
+    private var mainPresenter = BaseIndexPresenter<IIndexApiListener>()
 
     lateinit var list: ArrayList<T>
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        presenter.onAttach(this)
+        mainPresenter.onAttach(this)
         srl_index = findViewById(R.id.srl)
         rv_index = findViewById(R.id.rv)
         errorView_index = findViewById(R.id.ev)
@@ -41,7 +41,7 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
 
         srl_index?.setColorSchemeResources(R.color.onPrimaryColor)
         srl_index?.setOnRefreshListener {
-            presenter.run(this, services!!, this)
+            mainPresenter.run(this, services!!, this)
         }
 
 
@@ -75,7 +75,8 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
     fun callApiIndex(srv: Observable<Response<List<T>>>) {
         services = srv
         errorView_index?.showLoading()
-        presenter.run(this, services!!, this)
+        srl_index?.isRefreshing = false
+        mainPresenter.run(this, services!!, this)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -100,7 +101,7 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
         showErrorApi(context, errorView_index!!) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            presenter.run(context, services!!, this)
+            mainPresenter.run(context, services!!, this)
         }
     }
 
@@ -113,7 +114,7 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
         ) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            presenter.run(context, services!!, this)
+            mainPresenter.run(context, services!!, this)
         }
     }
 
@@ -121,7 +122,7 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
         showErrorInternet(context, errorView_index!!) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            presenter.run(context, services!!, this)
+            mainPresenter.run(context, services!!, this)
         }
     }
 }

@@ -26,13 +26,13 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
     var srl_index: SwipeRefreshLayout? = null
     var errorView_index: ErrorView? = null
     var services: Observable<Response<List<T>>>? = null
-    var presenter = BaseIndexPresenter<IIndexApiListener>()
+    private var mainPresenter = BaseIndexPresenter<IIndexApiListener>()
 
     lateinit var list: ArrayList<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(layout, container, false)
-        presenter.onAttach(this)
+        mainPresenter.onAttach(this)
         srl_index = v.findViewById(R.id.srl)
         rv_index = v.findViewById(R.id.rv)
         errorView_index = v.findViewById(R.id.ev)
@@ -41,7 +41,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
         srl_index?.setColorSchemeResources(R.color.onPrimaryColor)
         srl_index?.setOnRefreshListener {
-            presenter.run(context!!, services!!, this)
+            mainPresenter.run(context!!, services!!, this)
         }
         return v
     }
@@ -49,7 +49,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
     fun callApiIndex(srv: Observable<Response<List<T>>>) {
         services = srv
         errorView_index?.showLoading()
-        presenter.run(context!!, services!!, this)
+        mainPresenter.run(context!!, services!!, this)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -74,7 +74,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         showErrorApi(context, errorView_index!!) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            presenter.run(context, services!!, this)
+            mainPresenter.run(context, services!!, this)
         }
     }
 
@@ -87,7 +87,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         ) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            presenter.run(context, services!!, this)
+            mainPresenter.run(context, services!!, this)
         }
     }
 
@@ -95,7 +95,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         showErrorInternet(context, errorView_index!!) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            presenter.run(context, services!!, this)
+            mainPresenter.run(context, services!!, this)
         }
     }
 }
