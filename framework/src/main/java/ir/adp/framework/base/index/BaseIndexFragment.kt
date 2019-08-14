@@ -64,6 +64,7 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
         rv_index?.adapter?.notifyDataSetChanged()
         errorView_index?.showContent()
+        srl_index?.isRefreshing = false
     }
 
     override fun onEmptyResponse(): ErrorViewModel {

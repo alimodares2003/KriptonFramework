@@ -75,7 +75,6 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
     fun callApiIndex(srv: Observable<Response<List<T>>>) {
         services = srv
         errorView_index?.showLoading()
-        srl_index?.isRefreshing = false
         mainPresenter.run(this, services!!, this)
     }
 
@@ -91,6 +90,7 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
 
         rv_index?.adapter?.notifyDataSetChanged()
         errorView_index?.showContent()
+        srl_index?.isRefreshing = false
     }
 
     override fun onEmptyResponse(): ErrorViewModel {
