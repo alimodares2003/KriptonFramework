@@ -1,11 +1,18 @@
 package ir.adp.framework.base
 
+import android.app.Activity
 import android.content.Context
+import androidx.fragment.app.Fragment
+import com.afollestad.materialdialogs.MaterialDialog
 import io.reactivex.Observable
+import ir.adp.framework.R
+import ir.adp.framework.base.index.BaseIndexActivity
+import ir.adp.framework.base.index.BaseIndexFragment
 import ir.adp.framework.data.api.ApiClient
 import ir.adp.framework.data.api.ApiManager
 import ir.adp.framework.utils.listener.IApiListener
-import ir.adp.framework.utils.listener.IIndexApiListener
+import ir.adp.framework.utils.showLoading
+import ir.adp.framework.utils.toastL
 import retrofit2.Response
 
 /**
@@ -27,11 +34,43 @@ open class BasePresenter<V : BaseView> {
         return retrofit.getClient().create(cs)
     }
 
-    protected fun <T> run(context: Context, service: Observable<Response<List<T>>>, listener: IIndexApiListener) {
-        ApiManager.runApi(context, service, listener = listener)
+    var dialog: MaterialDialog? = null
+    fun <T> runApi(
+        context: Context,
+        api: Observable<Response<T>>,
+        onPre: (context: Context) -> Unit = { dialog = showLoading(context, view.dialogText()).cancelable(false) },
+        onComplete: () -> Unit = { dialog?.hide() },
+        onSuccess: (rs: Response<*>) -> Unit,
+        onFailure: (context: Context) -> Unit = {
+            dialog?.hide()
+            context.toastL(context.getString(R.string.errorInServerConnection))
+        }
+    ) {
+
+        ApiManager.runApi(context, api, object : IApiListener {
+            override fun onCompleteApi() {
+                onComplete()
+            }
+
+            override fun onFailureApi(context: Context) {
+                onFailure(context)
+            }
+
+            override fun onPreApi() {
+                onPre(context)
+            }
+
+            override fun onSuccessApi(rs: Response<*>, listener: IApiListener) {
+                onSuccess(rs)
+            }
+        })
     }
 
-    protected fun <T> run(context: Context, service: Observable<Response<T>>, listener: IApiListener) {
-        ApiManager.runApi(context, service, listener)
+    fun <T> runApi(activity: Activity): BaseIndexActivity<T> {
+        return activity as BaseIndexActivity<T>
+    }
+
+    fun <T> runApi(fragment: Fragment): BaseIndexFragment<T> {
+        return fragment as BaseIndexFragment<T>
     }
 }

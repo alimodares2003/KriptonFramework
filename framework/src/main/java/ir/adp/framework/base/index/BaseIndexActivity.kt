@@ -21,14 +21,14 @@ import retrofit2.Response
 @SuppressLint("Registered")
 open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
 
-    var rv_index: RecyclerView? = null
-    var srl_index: SwipeRefreshLayout? = null
-    var errorView_index: ErrorView? = null
-    var services: Observable<Response<List<T>>>? = null
-    var hasToolbarElevationOnScrollListener: Boolean = false
+    protected var rv_index: RecyclerView? = null
+    protected var srl_index: SwipeRefreshLayout? = null
+    protected var errorView_index: ErrorView? = null
+    protected var services: Observable<Response<List<T>>>? = null
+    protected var hasToolbarElevationOnScrollListener: Boolean = false
     private var mainPresenter = BaseIndexPresenter<IIndexApiListener>()
 
-    lateinit var list: ArrayList<T>
+    protected lateinit var list: ArrayList<T>
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)

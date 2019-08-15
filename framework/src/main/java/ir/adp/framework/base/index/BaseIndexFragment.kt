@@ -22,13 +22,13 @@ import retrofit2.Response
 
 open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
-    var rv_index: RecyclerView? = null
-    var srl_index: SwipeRefreshLayout? = null
-    var errorView_index: ErrorView? = null
-    var services: Observable<Response<List<T>>>? = null
+    protected var rv_index: RecyclerView? = null
+    protected var srl_index: SwipeRefreshLayout? = null
+    protected var errorView_index: ErrorView? = null
+    protected var services: Observable<Response<List<T>>>? = null
     private var mainPresenter = BaseIndexPresenter<IIndexApiListener>()
 
-    lateinit var list: ArrayList<T>
+    protected lateinit var list: ArrayList<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(layout, container, false)

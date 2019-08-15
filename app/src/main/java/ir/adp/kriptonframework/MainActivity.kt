@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
             when (it.itemId) {
                 1 -> supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment()).commit()
                 2 -> supportFragmentManager.beginTransaction().replace(R.id.container, MainIndexFragment()).commit()
-                3 -> supportFragmentManager.beginTransaction().replace(R.id.container, Fragment()).commit()
+//                3 -> supportFragmentManager.beginTransaction().replace(R.id.container, Fragment()).commit()
                 4 -> supportFragmentManager.beginTransaction().replace(R.id.container, MainIndexFragment()).commit()
                 5 -> supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment()).commit()
             }
@@ -51,7 +51,7 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.submit -> goActivity(MainIndexActivity::class.java)
-            R.id.form -> goActivity(Activity::class.java)
+//            R.id.form -> goActivity(Activity::class.java)
             else -> super.onOptionsItemSelected(item)
         }
         return true
