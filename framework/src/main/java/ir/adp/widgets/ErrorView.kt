@@ -33,15 +33,19 @@ class ErrorView : ProgressFrameLayout {
         overrideFonts(this)
     }
 
-    override fun showError(icon: Int, title: String?, description: String?, buttonText: String?, buttonClickListener: OnClickListener?) {
+    override fun showError(
+        icon: Int,
+        title: String?,
+        description: String?,
+        buttonText: String?,
+        buttonClickListener: OnClickListener?
+    ) {
         super.showError(icon, title, description, buttonText, buttonClickListener)
         overrideFonts(this)
     }
 
     private fun initView() {
-        post {
-            overrideFonts(this)
-        }
+        overrideFonts(this)
     }
 
     private fun overrideFonts(v: View) {
