@@ -25,7 +25,7 @@ fun showLoading(context: Context, text: String): MaterialDialog {
         tv.setTextColor(Color.BLACK)
 
     }.cornerRadius(8f)
-    loading.window.setLayout(550, 200)
+    loading.window?.setLayout(550, 200)
     return loading
 }
 
