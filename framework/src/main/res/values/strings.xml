@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">kriptonframework</string>
     <string name="noInternet">عدم دسترسی به اینترنت</string>
-    <string name="checkYourIntenrt">اینترنت خود را بررسی کنید</string>
+    <string name="checkYourInternet">اینترنت خود را بررسی کنید</string>
     <string name="tryAgain">تلاش مجدد</string>
     <string name="ok">باشه</string>
 

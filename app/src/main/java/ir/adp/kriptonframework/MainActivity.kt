@@ -41,6 +41,7 @@ class MainActivity : BaseActivity() {
         val user = dataManager.get("useraccount", UserModel())
         Log.d("awrbgRWV", user.name)
 
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

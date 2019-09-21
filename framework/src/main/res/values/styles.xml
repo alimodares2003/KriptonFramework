@@ -22,8 +22,17 @@
         <item name="loadingProgressBarColor">@color/onPrimaryColor</item>
         <item name="loadingProgressBarWidth">48dp</item>
         <item name="loadingProgressBarHeight">48dp</item>
-        <item name="errorButtonBackgroundColor">@color/colorAccent</item>
-        <item name="errorButtonTextColor">@color/onSecondaryColor</item>
+        <item name="errorButtonTextColor">@color/onPrimaryColor</item>
+        <item name="errorTitleTextColor">@color/textSecondary_default</item>
+        <item name="errorContentTextColor">@color/textSecondary_default</item>
+        <item name="emptyTitleTextColor">@color/textSecondary_default</item>
+        <item name="emptyContentTextColor">@color/textSecondary_default</item>
+        <item name="emptyImageWidth">108dp</item>
+        <item name="emptyImageHeight">108dp</item>
+        <item name="errorImageWidth">108dp</item>
+        <item name="errorImageHeight">108dp</item>
+        <item name="errorTitleTextSize">6sp</item>
+        <item name="emptyTitleTextSize">6sp</item>
     </style>
 
     <style name="RecyclerView">

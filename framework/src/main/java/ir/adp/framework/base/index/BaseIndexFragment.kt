@@ -99,4 +99,9 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
             mainPresenter.run(context, services!!, this)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        mainPresenter.run(context!!, services!!, this)
+    }
 }

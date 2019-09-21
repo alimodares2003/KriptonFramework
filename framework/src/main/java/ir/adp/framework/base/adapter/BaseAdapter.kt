@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-
+@Deprecated("for a bug, is deprecated.")
 abstract class BaseAdapter<T>(var model: ArrayList<T>) : RecyclerView.Adapter<BaseAdapter.ViewHolder<T>>() {
 
     var layout: Int = 0

@@ -35,7 +35,7 @@ object ErrorViewHelper
             StringHelper.setFontToText(context, context.getString(R.string.noInternet)),
             StringHelper.setFontToText(
                 context,
-                context.getString(R.string.checkYourIntenrt)
+                context.getString(R.string.checkYourInternet)
             ),
             StringHelper.setFontToText(context, context.getString(R.string.tryAgain))
         ) {

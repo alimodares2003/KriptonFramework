@@ -125,4 +125,9 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
             mainPresenter.run(context, services!!, this)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        mainPresenter.run(this, services!!, this)
+    }
 }
