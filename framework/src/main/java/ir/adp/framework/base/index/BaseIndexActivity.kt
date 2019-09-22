@@ -128,6 +128,8 @@ open class BaseIndexActivity<T> : BaseActivity(), IIndexApiListener {
 
     override fun onResume() {
         super.onResume()
-        mainPresenter.run(this, services!!, this)
+        errorView_index?.showLoading()
+        if (services != null)
+            mainPresenter.run(this, services!!, this)
     }
 }
