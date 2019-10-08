@@ -12,21 +12,15 @@ import ir.adp.widgets.TextView
 object Dialog
 
 fun showLoading(context: Context, text: String): MaterialDialog {
-    var width = 0
-    var height = 0
-    val loading = MaterialDialog(context).show {
+    return MaterialDialog(context).show {
         customView(R.layout.loading_dialog)
         val attr = getCustomView()
         val tv = attr.findViewById<TextView>(R.id.tv_loading)
         val pb = attr.findViewById<ProgressBar>(R.id.pb)
-        width = tv.length()
-        height = pb.height
         tv.text = text
         tv.setTextColor(Color.BLACK)
-
+        cancelable(false)
     }.cornerRadius(8f)
-    loading.window?.setLayout(550, 200)
-    return loading
 }
 
 fun showAlert(
