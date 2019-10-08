@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import ir.adp.framework.R
 import ir.adp.framework.data.api.ApiClient
+import ir.adp.framework.data.api.ApiUtil
 import ir.adp.framework.data.manager.DataManager
 import ir.adp.framework.utils.DisplayHelper
 import ir.adp.framework.utils.changeColorDrawable
@@ -14,6 +15,10 @@ import ir.adp.widgets.Toolbar
 
 
 open class BaseActivity : AppCompatActivity() {
+
+    companion object {
+        var DIRECTION = ""
+    }
 
     protected var toolbar: Toolbar? = null
     var isShowBack = true
@@ -27,11 +32,16 @@ open class BaseActivity : AppCompatActivity() {
         attachToolbar()
 
         dataManager = DataManager(application)
-        val direction = dataManager.get("direction", "")
-        DisplayHelper.changeAppDirection(this, direction)
+        ApiUtil.init(dataManager)
+        DisplayHelper.changeAppDirection(this, DIRECTION)
 
         val icon =
-            changeColorDrawableVector(this, direction, resBackIcon, ContextCompat.getColor(this, R.color.toolbar_color))
+            changeColorDrawableVector(
+                this,
+                DIRECTION,
+                resBackIcon,
+                ContextCompat.getColor(this, R.color.toolbar_color)
+            )
 
         if (isShowBack) {
             toolbar?.navigationIcon = icon
@@ -52,7 +62,11 @@ open class BaseActivity : AppCompatActivity() {
             menuInflater.inflate(resMenu, menu)
             for (i in 0 until menu!!.size()) {
                 val m = menu.getItem(0)
-                m.icon = changeColorDrawable(this, m.icon, ContextCompat.getColor(this, R.color.toolbar_color))
+                m.icon = changeColorDrawable(
+                    this,
+                    m.icon,
+                    ContextCompat.getColor(this, R.color.toolbar_color)
+                )
             }
             true
         } else super.onCreateOptionsMenu(menu)

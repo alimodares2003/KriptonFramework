@@ -1,11 +1,13 @@
 package ir.adp.framework.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ir.adp.framework.data.api.ApiClient
+import ir.adp.framework.data.api.ApiUtil
 import ir.adp.framework.data.manager.DataManager
 
 open class BaseFragment : Fragment() {
@@ -14,8 +16,13 @@ open class BaseFragment : Fragment() {
     lateinit var dataManager: DataManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dataManager = DataManager(activity!!.application)
         return inflater.inflate(layout, container, false)
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        dataManager = DataManager(activity!!.application)
+        ApiUtil.init(dataManager)
     }
 
     inline fun <reified T> getService(): T {

@@ -73,7 +73,12 @@ fun Activity.goActivity(intent: Intent, isFinish: Boolean = false) {
     startActivity(intent)
 }
 
-fun Activity.goActivity(activity: Class<*>, names: Array<String>, vararg data: Any, isFinish: Boolean = false) {
+fun Activity.goActivity(
+    activity: Class<*>,
+    names: Array<String>,
+    vararg data: Any,
+    isFinish: Boolean = false
+) {
     if (isFinish)
         finish()
     val intent = Intent(this, activity)
@@ -106,7 +111,12 @@ fun Activity.goActivity(activity: Class<*>, names: Array<String>, vararg data: A
     startActivity(intent)
 }
 
-fun Activity.goActivity(activity: Class<*>, model: Parcelable, name: String = "model", isFinish: Boolean = false) {
+fun Activity.goActivity(
+    activity: Class<*>,
+    model: Parcelable,
+    name: String = "model",
+    isFinish: Boolean = false
+) {
     if (isFinish)
         finish()
     val intent = Intent(this, activity)
@@ -167,4 +177,22 @@ fun Context?.goTelegramPage(pageName: String?) {
         val telegram = Intent(Intent.ACTION_VIEW, uri)
         startActivity(telegram)
     }
+}
+
+fun Activity.restartApplication(context: Context) {
+    val i = context.packageManager.getLaunchIntentForPackage(context.packageName)!!
+    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    startActivity(i)
+}
+
+fun Fragment.restartApplication(context: Context) {
+    val i = context.packageManager.getLaunchIntentForPackage(context.packageName)!!
+    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    startActivity(i)
+}
+
+fun Context.restartApplication() {
+    val i = this.packageManager.getLaunchIntentForPackage(this.packageName)!!
+    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    startActivity(i)
 }

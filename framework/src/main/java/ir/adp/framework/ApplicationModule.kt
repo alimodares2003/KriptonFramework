@@ -3,8 +3,8 @@ package ir.adp.framework
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import ir.adp.framework.base.BaseActivity
 import ir.adp.framework.data.api.ApiClient
-import ir.adp.framework.data.manager.DataManager
 
 
 open class ApplicationModule : MultiDexApplication() {
@@ -16,8 +16,8 @@ open class ApplicationModule : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        DataManager(this).put("direction", getDirection())
         ApiClient.BASE_URL = getBaseUrl()
+        BaseActivity.DIRECTION = getDirection()
     }
 
     open fun getDirection(): String {

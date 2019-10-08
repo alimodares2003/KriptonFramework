@@ -44,4 +44,8 @@ class DataManager(application: Application) {
             else -> sp.edit().putString(key, value.parseClassToStringGSON()).apply()
         }
     }
+
+    fun clear() {
+        sp.edit().clear().apply()
+    }
 }
