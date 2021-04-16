@@ -18,6 +18,8 @@ open class BaseActivity : AppCompatActivity() {
 
     companion object {
         var DIRECTION = ""
+        const val REQUEST_GPS_SETTINGS = 1
+        const val REQUEST_GPS_SETTINGS_CANCELED = 2
     }
 
     protected var toolbar: Toolbar? = null

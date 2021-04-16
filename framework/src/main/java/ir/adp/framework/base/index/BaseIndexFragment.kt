@@ -19,7 +19,6 @@ import ir.adp.framework.utils.showErrorInternet
 import ir.adp.widgets.ErrorView
 import retrofit2.Response
 
-
 open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
     protected var rv_index: RecyclerView? = null
@@ -30,7 +29,11 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
     protected lateinit var list: ArrayList<T>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val v = inflater.inflate(layout, container, false)
         mainPresenter.onAttach(this)
         srl_index = v.findViewById(R.id.srl)
@@ -41,7 +44,8 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
 
         srl_index?.setColorSchemeResources(R.color.onPrimaryColor)
         srl_index?.setOnRefreshListener {
-            mainPresenter.run(context!!, services!!, this)
+            if (services != null)
+                mainPresenter.run(context!!, services!!, this)
         }
         return v
     }
@@ -75,7 +79,8 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         showErrorApi(context, errorView_index!!) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            mainPresenter.run(context, services!!, this)
+            if (services != null)
+                mainPresenter.run(context, services!!, this)
         }
     }
 
@@ -88,7 +93,8 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         ) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            mainPresenter.run(context, services!!, this)
+            if (services != null)
+                mainPresenter.run(context, services!!, this)
         }
     }
 
@@ -96,12 +102,14 @@ open class BaseIndexFragment<T> : BaseFragment(), IIndexApiListener {
         showErrorInternet(context, errorView_index!!) {
             errorView_index?.showLoading()
             srl_index?.isRefreshing = false
-            mainPresenter.run(context, services!!, this)
+            if (services != null)
+                mainPresenter.run(context, services!!, this)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        mainPresenter.run(context!!, services!!, this)
+        if (services != null)
+            mainPresenter.run(context!!, services!!, this)
     }
 }

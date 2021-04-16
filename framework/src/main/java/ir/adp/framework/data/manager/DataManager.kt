@@ -1,9 +1,8 @@
 package ir.adp.framework.data.manager
 
 
-import `in`.co.ophio.secure.core.KeyStoreKeyGenerator
-import `in`.co.ophio.secure.core.ObscuredPreferencesBuilder
 import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import ir.adp.framework.utils.parseClassToStringGSON
 import ir.adp.framework.utils.parseToClassGSON
@@ -11,14 +10,17 @@ import ir.adp.framework.utils.parseToClassGSON
 
 class DataManager(application: Application) {
 
-    val key = KeyStoreKeyGenerator.get(application, application.packageName).loadOrGenerateKeys()
-    val sp: SharedPreferences = ObscuredPreferencesBuilder()
-    .setApplication(application)
-    .obfuscateValue(true)
-    .obfuscateKey(true)
-    .setSharePrefFileName(application.packageName)
-    .setSecret(key)
-    .createSharedPrefs()
+//    val key = KeyStoreKeyGenerator.get(application, application.packageName).loadOrGenerateKeys()
+
+    //    val sp: SharedPreferences = ObscuredPreferencesBuilder()
+//    .setApplication(application)
+//    .obfuscateValue(true)
+//    .obfuscateKey(true)
+//    .setSharePrefFileName(application.packageName)
+//    .setSecret(key)
+//    .createSharedPrefs()
+    var sp: SharedPreferences =
+        application.getSharedPreferences(application.packageName, Context.MODE_PRIVATE)
 
     @Suppress("UNCHECKED_CAST")
     inline fun <reified T> get(key: String, def: T): T {

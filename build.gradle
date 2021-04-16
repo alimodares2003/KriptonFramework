@@ -2,18 +2,18 @@
 
 buildscript {
 
-    ext.kotlin_version = '1.3.50'
-    ext.material_version = '1.0.0'
-    ext.glide_version = '4.9.0'
+    ext.kotlin_version = '1.4.30'
+    ext.material_version = '1.2.1'
+    ext.glide_version = '4.11.0'
     ext.toolbox_version = '1.0.7'
     ext.material_dialog_version = '3.0.0-rc4'
     ext.gson_version = '2.8.5'
-    ext.retrofit_version = '2.4.0'
-    ext.gsonConverter_version = '2.4.0'
-    ext.rxJava_version = '2.2.2'
+    ext.retrofit_version = '2.8.1'
+    ext.gsonConverter_version = '2.6.1'
+    ext.rxJava_version = '2.2.12'
     ext.rxAndroid_version = '2.1.1'
-    ext.rxJavaAdapter_version = '2.4.0'
-    ext.okhttpLog_version = '3.11.0'
+    ext.rxJavaAdapter_version = '2.6.1'
+    ext.okhttpLog_version = '3.12.0'
     ext.errorView_version = '2.0.5'
     ext.sharedPreferences_version = '0.1.3'
     ext.customTabs_version = '28.0.0'
@@ -24,7 +24,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:4.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
     }

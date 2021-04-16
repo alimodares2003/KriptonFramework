@@ -1,5 +1,6 @@
 package ir.adp.framework.base
 
+
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,11 +16,15 @@ open class BaseFragment : Fragment() {
     var layout: Int = 0
     lateinit var dataManager: DataManager
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(layout, container, false)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         dataManager = DataManager(activity!!.application)
         ApiUtil.init(dataManager)
@@ -30,5 +35,4 @@ open class BaseFragment : Fragment() {
         val cs: Class<T> = Class.forName(T::class.java.name) as Class<T>
         return retrofit.getClient().create(cs)
     }
-
 }

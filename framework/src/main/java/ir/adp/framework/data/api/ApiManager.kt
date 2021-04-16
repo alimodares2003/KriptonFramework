@@ -22,12 +22,8 @@ object ApiManager {
                 service.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ response ->
-                        if (response.isSuccessful) {
-                            listener.onCompleteApi()
-                            listener.onSuccessApi(response, listener)
-                        } else {
-                            context.toastL(response.code().toString() + context.getString(R.string.errorCode))
-                        }
+                        listener.onCompleteApi()
+                        listener.onSuccessApi(response, listener)
                     }, {
                         listener.onFailureApi(context)
                     })
