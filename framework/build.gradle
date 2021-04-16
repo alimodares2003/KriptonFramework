@@ -26,6 +26,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
 }
 
 dependencies {
@@ -40,7 +45,7 @@ dependencies {
     api "in.co.ophio:secure-preferences:$sharedPreferences_version"
 
     // ‌MATERIAL
-    api "com.google.android.material:material:1.4.0-alpha02"
+    api "com.google.android.material:material:1.3.0"
 
     // GLIDE
     api "com.github.bumptech.glide:glide:$glide_version"
@@ -73,5 +78,7 @@ dependencies {
 
     //CUSTOM TABS
     api "com.android.support:customtabs:$customTabs_version"
+
+    implementation 'com.android.support:multidex:1.0.3'
 
 }
